@@ -1,3 +1,7 @@
+// Developed by CV03Luka - 2024-02-23
+// NOTE - this program is free to use for everyone, it can be redistributed, reuploaded and edited to suit your needs
+// No credit required
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
