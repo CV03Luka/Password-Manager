@@ -78,12 +78,27 @@ void generatePassword(int length, int includeNumbers, int includeSpecialChars) {
     }
 
     // Generate password
-    char password[MAX_LENGTH + 1];
+        char password[MAX_LENGTH + 1];
+    int hasNumbers = 0;
+    int hasSpecialChars = 0;
     for (int i = 0; i < length; i++) {
         int index = rand() % charsetSize;
         password[i] = charset[index];
+        if (includeNumbers && strchr(numbers, password[i])) {
+            hasNumbers = 1;
+        }
+        if (includeSpecialChars && strchr(specialChars, password[i])) {
+            hasSpecialChars = 1;
+        }
     }
     password[length] = '\0';
+
+    // Check if the password contains numbers and/or special characters as requested
+    if ((includeNumbers && !hasNumbers) || (includeSpecialChars && !hasSpecialChars)) {
+        // Regenerate the password if it doesn't meet the requirements
+        generatePassword(length, includeNumbers, includeSpecialChars);
+        return;
+    }
 
     printf("Generated password: %s\n", password);
 
